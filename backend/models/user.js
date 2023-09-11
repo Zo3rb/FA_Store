@@ -12,25 +12,16 @@ const userSchema = new mongoose.Schema({
     required: [true, 'please enter your email'],
   },
   password: {
-    String,
+    type: String,
     required: [true, 'please enter your password'],
   },
   phoneNumbeer: {
     type: Number,
   },
-  avatar: {
-    public_id: {
-      type: String,
-      required: true,
-    },
-    url: {
-      type: String,
-      required: true,
-    },
-  },
+  avatar: String,
   createdAt: {
     type: Date,
-    default: new Date.now
+    default: Date.now
   },
   resetPasswordToken: String,
   resetPasswordTime: Date

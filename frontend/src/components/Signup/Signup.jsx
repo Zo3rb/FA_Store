@@ -1,8 +1,10 @@
 import { React, useState } from "react";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import styles from "../../styles/styles";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { RxAvatar } from "react-icons/rx";
+import { server } from "../../server";
+import axios from "axios";
 
 const Signup = () => {
   const [email, setEmail] = useState("");
@@ -10,22 +12,49 @@ const Signup = () => {
   const [password, setPassword] = useState("");
   const [visible, setVisible] = useState(false);
   const [avatar, setAvatar] = useState(null);
+  const navigate = useNavigate();
 
   const handleFileInputChange = (e) => {
-    const reader = new FileReader();
+    // const reader = new FileReader();
 
-    reader.onload = () => {
-      if (reader.readyState === 2) {
-        setAvatar(reader.result);
-      }
-    };
+    // reader.onload = () => {
+    //   if (reader.readyState === 2) {
+    //     setAvatar(reader.result);
+    //   }
+    // };
 
-    reader.readAsDataURL(e.target.files[0]);
+    // reader.readAsDataURL(e.target.files[0]);
+    const file = e.target.files[0];
+    setAvatar(file);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("submit handle");
+
+    const newForm = new FormData();
+
+    newForm.append("name", name);
+    newForm.append("email", email);
+    newForm.append("file", avatar);
+    newForm.append("password", password);
+
+    const config = {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    };
+
+    try {
+      const response = await axios.post(`${server}/user/create-user`,
+        newForm,
+        config
+      );
+      console.log(response);
+      navigate("/");
+    } catch (error) {
+      console.error("Error:", error);
+      // Handle the error or show an error message to the user
+    }
   };
 
   return (
