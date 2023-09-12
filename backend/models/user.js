@@ -27,22 +27,22 @@ const userSchema = new mongoose.Schema({
   resetPasswordTime: Date
 });
 
-// hash password before saving for new users
-userSchema.pre('save', async function (next) {
-  if (!this.isModified('passwortd')) {
-    next()
-  
-    this.password = bcrypt.hash(this.password, 10);
+userSchema.pre("save", async function (next){
+  if(!this.isModified("password")){
+    next();
   }
+
+  this.password = await bcrypt.hash(this.password, 10);
 });
 
 // generate token to be used as cookies
-userSchema.methodsgetJwtToken = function () {
+userSchema.methods.getJwtToken = function () {
   return jwt.sign({ id: this._id }, process.env.JWT_SECRET_KEY, {expiresIn: '5d',});
 }
 
-userSchema.methods.comparePassword = function (enteredPassword) {
-  return bcrypt.compare(enteredPassword, this.password);
-}
+// compare password
+userSchema.methods.comparePassword = async function (enteredPassword) {
+  return await bcrypt.compare(enteredPassword, this.password);
+};
 
 module.exports = mongoose.model('User', userSchema);
