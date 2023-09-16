@@ -8,15 +8,19 @@ import {
   ProductsPage,
   BestSellingPage,
   EventsPage,
-  FAQPage
+  FAQPage,
+  ProductDetailsPage,
+
 } from "./routes/Routes";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useEffect } from "react";
 import Store from "./redux/store";
 import { loadUser } from "./redux/actions/user";
+import { useSelector } from "react-redux";
 
 const App = () => {
+  const { loading } = useSelector((state) => state.user);
   useEffect(() => {
     Store.dispatch(loadUser());
   }, []);
@@ -32,6 +36,7 @@ const App = () => {
           element={<ActivationPage />}
         />
         <Route path="/products" element={<ProductsPage />} />
+        <Route path="/products/:name" element={<ProductDetailsPage />} />
         <Route path="/best-selling" element={<BestSellingPage/>} />
         <Route path="/events" element={<EventsPage/>} />
         <Route path="/faq" element={<FAQPage/>} />
