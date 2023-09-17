@@ -16,7 +16,7 @@ const ProductCard = ({data}) => {
             <div className='flex justify-end'>
     
             </div>
-            <Link to={`/product/${product_name}`}>
+            <Link to={`/products/${product_name}`}>
                 <img src={data.image_Url[0].url} alt="" 
                 className='w-full h-[170px] object-contain' />
             </Link>
@@ -25,7 +25,7 @@ const ProductCard = ({data}) => {
                     {data.shop.name}
                 </h4>
             </Link>
-            <Link to={`/product/${product_name}`}>
+            <Link to={`/products/${product_name}`}>
                 <h4 className="pb-3 font[500]">
                     {data.name.length > 40 ? data.name.slice(0, 40) + "..." : data.name}
                 </h4>
