@@ -1,17 +1,17 @@
 const express = require("express");
-const path = require('path');
-const upload = require('../multer');
-const User = require('../models/user');
-const fs = require('fs');
+const path = require("path");
+const upload = require("../multer");
+const User = require("../models/user");
+const fs = require("fs");
 const ErrorHandler = require("../utils/ErrorHandler");
 const jwt = require("jsonwebtoken");
-const sendMail = require('../utils/sendMail');
-const catchAsyncErrors = require('../middleware/catchAsyncErrors');
+const sendMail = require("../utils/sendMail");
+const catchAsyncErrors = require("../middleware/catchAsyncErrors");
 const router = express.Router();
-const sendToken = require('../utils/jwtToken');
-const isAuthenticated = require('../middleware/auth');
+const sendToken = require("../utils/jwtToken");
+const isAuthenticated = require("../middleware/auth");
 
-router.post('/create-user', upload.single('file'), async (req, res, next) => {
+router.post("/create-user", upload.single("file"), async (req, res, next) => {
   try {
     const { name, email, password } = req.body;
     const userEmail = await User.findOne({ email });
@@ -22,10 +22,10 @@ router.post('/create-user', upload.single('file'), async (req, res, next) => {
       fs.unlink(filePath, (err) => {
         if (err) {
           console.log(err);
-          res.status(500).send('Error deleting file');
+          res.status(500).send("Error deleting file");
         }
       });
-      return next(new ErrorHandler('User already exists', 400));
+      return next(new ErrorHandler("User already exists", 400));
     }
 
     const filename = req.file.filename;
@@ -35,7 +35,7 @@ router.post('/create-user', upload.single('file'), async (req, res, next) => {
       name,
       email,
       password,
-      avatar: fileUrl
+      avatar: fileUrl,
     };
 
     const activationToken = createActivationToken(user);
@@ -45,24 +45,28 @@ router.post('/create-user', upload.single('file'), async (req, res, next) => {
     try {
       sendMail({
         email: user.email,
-        subject: 'Activate your account',
+        subject: "Activate your account",
         message: `Hello ${user.name}, please click on the link to activate your account: ${activationUrl}`,
       });
-      res.status(201).json({ success: true, message: `Please check your email ${user.email} to activate your account` });
+      res
+        .status(201)
+        .json({
+          success: true,
+          message: `Please check your email ${user.email} to activate your account`,
+        });
     } catch (err) {
       next(new ErrorHandler(err.message, 500));
     }
 
     // const newUser = await User.create(user);
     //   return res.status(201).json({ success: true, newUser });
-
   } catch (error) {
     next(new ErrorHandler(error.message, 500));
   }
 });
 
 function createActivationToken(user) {
-  return jwt.sign(user, process.env.ACTIVATION_SECRET, { expiresIn: '5m' });
+  return jwt.sign(user, process.env.ACTIVATION_SECRET, { expiresIn: "5m" });
 }
 
 // activate user
@@ -124,7 +128,7 @@ router.post(
           new ErrorHandler("Please provide the correct information", 400)
         );
       }
-         sendToken(user, 201, res);
+      sendToken(user, 201, res);
     } catch (error) {
       return next(new ErrorHandler(error.message, 500));
     }
@@ -153,5 +157,25 @@ router.get(
   })
 );
 
+// log out user
+router.get(
+  "/logout",
+  catchAsyncErrors(async (req, res, next) => {
+    try {
+      res.cookie("token", null, {
+        expires: new Date(Date.now()),
+        httpOnly: true,
+        sameSite: "none",
+        secure: true,
+      });
+      res.status(201).json({
+        success: true,
+        message: "Log out successful!",
+      });
+    } catch (error) {
+      return next(new ErrorHandler(error.message, 500));
+    }
+  })
+);
 
 module.exports = router;
