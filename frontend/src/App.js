@@ -10,8 +10,9 @@ import {
   EventsPage,
   FAQPage,
   ProductDetailsPage,
-
+  ProfilePage,
 } from "./routes/Routes";
+import ProtectedRoute from "./routes/ProtectedRoute";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useEffect } from "react";
@@ -37,10 +38,19 @@ const App = () => {
         />
         <Route path="/products" element={<ProductsPage />} />
         <Route path="/products/:name" element={<ProductDetailsPage />} />
-        <Route path="/best-selling" element={<BestSellingPage/>} />
-        <Route path="/events" element={<EventsPage/>} />
-        <Route path="/faq" element={<FAQPage/>} />
+        <Route path="/best-selling" element={<BestSellingPage />} />
+        <Route path="/events" element={<EventsPage />} />
+        <Route path="/faq" element={<FAQPage />} />
+        <Route
+          path="/profile"
+          element={
+            <ProtectedRoute>
+              <ProfilePage />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
+
       <ToastContainer
         position="bottom-center"
         autoClose={5000}
@@ -55,6 +65,6 @@ const App = () => {
       />
     </BrowserRouter>
   );
-}
+};
 
 export default App;
