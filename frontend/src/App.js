@@ -10,6 +10,7 @@ import {
   EventsPage,
   FAQPage,
   ProductDetailsPage,
+  ProfilePage,
   ShopCreatePage,
   SellerActivationPage,
   ShopLoginPage,
@@ -55,6 +56,14 @@ const App = () => {
             <Route path="/best-selling" element={<BestSellingPage/>} />
             <Route path="/events" element={<EventsPage/>} />
             <Route path="/faq" element={<FAQPage/>} />
+            <Route
+              path="/profile"
+              element={
+                <ProtectedRoute>
+                  <ProfilePage />
+                </ProtectedRoute>
+              }
+            />
 
             {/* shop Rout */}
             <Route path="/shop-create" element={<ShopCreatePage/>} />
