@@ -8,6 +8,7 @@ import { toast } from "react-toastify";
 import { RxAvatar } from "react-icons/rx";
 
 const ShopCreate = () => {
+    const navigate = useNavigate();
     const [email, setEmail] = useState("");
     const [name, setName] = useState("");
     const [phoneNumber, setPhoneNumber] = useState();
@@ -19,42 +20,58 @@ const ShopCreate = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        const config = {headers: { "Content-Type": "multipart/form-data" }};
+
+        const newForm = new FormData();
+        
+        newForm.append("avatar", avatar);
+        newForm.append("name", name);
+        newForm.append("email", email);
+        newForm.append("password", password);
+        newForm.append("zipCode", zipCode);
+        newForm.append("address", address);
+        newForm.append("phoneNumber", phoneNumber);
 
         axios
-        .post(`${server}/shop/create-shop`, {
-            name,
-            email,
-            password,
-            avatar,
-            zipCode,
-            address,
-            phoneNumber,
-        })
-        .then((res) => {
-            toast.success(res.data.message);
-            setName("");
-            setEmail("");
-            setPassword("");
-            setAvatar();
-            setZipCode();
-            setAddress("");
-            setPhoneNumber();
-        })
-        .catch((error) => {
-            toast.error(error.response.data.message);
-        });
+            .post(`${server}/shop/create-shop`, newForm, config
+            // {
+            //     name,
+            //     email,
+            //     password,
+            //     avatar,
+            //     zipCode,
+            //     address,
+            //     phoneNumber,
+            // }
+            )
+            .then((res) => {
+                toast.success(res.data.message);
+                setName("");
+                setEmail("");
+                setPassword("");
+                setAvatar();
+                setZipCode();
+                setAddress("");
+                setPhoneNumber();
+            })
+            .catch((error) => {
+                console.error("Error:", error);
+                toast.error(error.response.data.message);
+            });
     };
 
     const handleFileInputChange = (e) => {
-        const reader = new FileReader();
+        // const reader = new FileReader();
 
-        reader.onload = () => {
-        if (reader.readyState === 2) {
-            setAvatar(reader.result);
-        }
-        };
+        // reader.onload = () => {
+        // if (reader.readyState === 2) {
+        //     setAvatar(reader.result);
+        // }
+        // };
 
-        reader.readAsDataURL(e.target.files[0]);
+        // reader.readAsDataURL(e.target.files[0]);
+        const file = e.target.files[0];
+        setAvatar(file);
     };
 
     return (
