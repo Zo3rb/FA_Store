@@ -6,21 +6,18 @@ import ProductsPage from "../pages/ProductsPage";
 import BestSellingPage from "../pages/BestSellingPage";
 import EventsPage from "../pages/EventsPage";
 import FAQPage from "../pages/FAQPage";
-import ProductDetailsPage from "../pages/ProductDetailsPage";
-import ShopCreatePage from "../pages/ShopCreatePage";
-import SellerActivationPage from "../pages/SellerActivationPage";
-import ShopLoginPage from "../pages/ShopLoginPage";
+import ProductDetailsPage from "../pages/PrductDetailsPage";
+import ProfilePage from "../pages/ProfilePage";
 
-export { LoginPage, 
-        SignupPage, 
-        ActivationPage, 
-        HomePage,
-        ProductsPage,
-        BestSellingPage,
-        EventsPage,
-        FAQPage,
-        ProductDetailsPage,
-        ShopCreatePage,
-        SellerActivationPage,
-        ShopLoginPage,
+export {
+  LoginPage,
+  SignupPage,
+  ActivationPage,
+  HomePage,
+  ProductsPage,
+  BestSellingPage,
+  EventsPage,
+  FAQPage,
+  ProductDetailsPage,
+  ProfilePage,
 };

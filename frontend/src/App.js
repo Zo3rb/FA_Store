@@ -15,6 +15,7 @@ import {
   ShopLoginPage,
 
 } from "./routes/Routes";
+import ProtectedRoute from "./routes/ProtectedRoute";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useEffect } from "react";
@@ -82,6 +83,6 @@ const App = () => {
       )}
     </>
   );
-}
+};
 
 export default App;
