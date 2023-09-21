@@ -33,14 +33,8 @@ const shopSchema = new mongoose.Schema({
     default: "Seller",
   },
   avatar: {
-    public_id: {
       type: String,
       required: true,
-    },
-    url: {
-      type: String,
-      required: true,
-    },
   },
   zipCode: {
     type: Number,
@@ -53,25 +47,25 @@ const shopSchema = new mongoose.Schema({
     type: Number,
     default: 0,
   },
-  transections: [
-    {
-      amount: {
-        type: Number,
-        required: true,
-      },
-      status: {
-        type: String,
-        default: "Processing",
-      },
-      createdAt: {
-        type: Date,
-        default: Date.now(),
-      },
-      updatedAt: {
-        type: Date,
-      },
-    },
-  ],
+  // transections: [
+  //   {
+  //     amount: {
+  //       type: Number,
+  //       required: true,
+  //     },
+  //     status: {
+  //       type: String,
+  //       default: "Processing",
+  //     },
+  //     createdAt: {
+  //       type: Date,
+  //       default: Date.now(),
+  //     },
+  //     updatedAt: {
+  //       type: Date,
+  //     },
+  //   },
+  // ],
   createdAt: {
     type: Date,
     default: Date.now(),

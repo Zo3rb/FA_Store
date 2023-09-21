@@ -14,7 +14,6 @@ const sendShopToken = require("../utils/shopToken");
 
 router.post('/create-shop', upload.single('file'), async (req, res, next) => {
   try {
-    console.log(req.body);
     const { email } = req.body;
     const sellerEmail = await Shop.findOne({ email });
 
@@ -42,6 +41,7 @@ router.post('/create-shop', upload.single('file'), async (req, res, next) => {
       phoneNumber: req.body.phoneNumber,
       zipCode: req.body.zipCode
     };
+    console.log(seller);
 
     const activationToken = createActivationToken(seller);
 
@@ -67,7 +67,7 @@ router.post('/create-shop', upload.single('file'), async (req, res, next) => {
 });
 
 const createActivationToken = (seller) => {
-  return jwt.sign(seller, process.env.ACTIVATION_SECRET, { expiresIn: '5m' });
+  return jwt.sign(seller, process.env.ACTIVATION_SECRET, { expiresIn: "5m" });
 };
 
 // activate shop account
@@ -82,6 +82,7 @@ router.post(
         activation_token,
         process.env.ACTIVATION_SECRET
       );
+      console.log(newSeller);
 
       if (!newSeller) {
         return next(new ErrorHandler("Invalid token", 400));
@@ -102,7 +103,7 @@ router.post(
         address,
         phoneNumber,
       });
-      sendShopToken(user, 201, res);
+      sendShopToken(seller, 201, res);
     } catch (error) {
       return next(new ErrorHandler(error.message, 500));
     }
@@ -126,7 +127,7 @@ router.post(
         return next(new ErrorHandler("User doesn't exists!", 400));
       }
 
-      const isPasswordValid = await user.comparePassword(password);
+      const isPasswordValid = await seller.comparePassword(password);
 
       if (!isPasswordValid) {
         return next(
