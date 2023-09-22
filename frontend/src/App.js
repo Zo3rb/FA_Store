@@ -25,10 +25,10 @@ import {
 import {
   ShopDashboardPage,
   ShopCreateProduct,
-  // ShopAllProducts,
-  // ShopCreateEvents,
-  // ShopAllEvents,
-  // ShopAllCoupouns,
+  ShopAllProducts,
+  ShopCreateEvents,
+  ShopAllEvents,
+  ShopAllCoupouns,
   // ShopPreviewPage,
   ShopAllOrders,
   // ShopOrderDetails,
@@ -195,30 +195,33 @@ const App = () => {
         }
         />
 
-        // <Route
-        //   path="/dashboard-create-event"
-        //   element={
-        //     <SellerProtectedRoute>
-        //       <ShopCreateEvents />
-        //     </SellerProtectedRoute>
-        //   }
-        // />
-        // <Route
-        //   path="/dashboard-events"
-        //   element={
-        //     <SellerProtectedRoute> */}
-        {/* //       <ShopAllEvents />
-        //     </SellerProtectedRoute>
-        //   }
-        // />
-        // <Route
-        //   path="/dashboard-coupouns"
-        //   element={
-        //     <SellerProtectedRoute>
-        //       <ShopAllCoupouns />
-        //     </SellerProtectedRoute>
-        //   }
-        // /> */}
+         <Route
+        path="/dashboard-create-event"
+          element={
+             <SellerProtectedRoute>
+               <ShopCreateEvents />
+             </SellerProtectedRoute>
+           }
+          />
+          
+         <Route
+           path="/dashboard-events"
+          element={
+             <SellerProtectedRoute> 
+               <ShopAllEvents />
+             </SellerProtectedRoute>
+           }
+          />
+          
+        <Route
+        path="/dashboard-coupouns"
+           element={
+             <SellerProtectedRoute>
+               <ShopAllCoupouns />
+             </SellerProtectedRoute>
+           }
+          /> 
+          
         {/* // <Route
         //   path="/dashboard-withdraw-money"
         //   element={
