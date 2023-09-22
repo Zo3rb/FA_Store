@@ -24,15 +24,15 @@ import {
 } from "./routes/Routes.js";
 import {
   ShopDashboardPage,
-  // ShopCreateProduct,
+  ShopCreateProduct,
   // ShopAllProducts,
   // ShopCreateEvents,
   // ShopAllEvents,
   // ShopAllCoupouns,
   // ShopPreviewPage,
-  // ShopAllOrders,
+  ShopAllOrders,
   // ShopOrderDetails,
-  // ShopAllRefunds,
+  ShopAllRefunds,
   // ShopSettingsPage,
   // ShopWithDrawMoneyPage,
   // ShopInboxPage,
@@ -152,47 +152,49 @@ const App = () => {
             }
         />
 
-        {/* // <Route */} *
-        {/* //   path="/dashboard-create-product"
-        //   element={ */}
-        {/* //     <SellerProtectedRoute>
-        //       <ShopCreateProduct />
-        //     </SellerProtectedRoute>
-        //   }
-        // />
-        // <Route */}
-           {/* path="/dashboard-orders" */}
-           {/* element={ */}
-        {/* //     <SellerProtectedRoute>
-        //       <ShopAllOrders />
-        //     </SellerProtectedRoute>
-        //   }
-        // />
-        // <Route
-        //   path="/dashboard-refunds"
-        //   element={
-        //     <SellerProtectedRoute>
-        //       <ShopAllRefunds />
-        //     </SellerProtectedRoute>
-        //   }
-        // /> */}
+        <Route 
+            path="/dashboard-create-product"
+            element={
+              <SellerProtectedRoute>
+                <ShopCreateProduct /> 
+              </SellerProtectedRoute>}
+        />
+      <Route 
+         path="/dashboard-orders" 
+            element={ 
+         <SellerProtectedRoute>
+         <ShopAllOrders /> 
+     </SellerProtectedRoute>
+       }
+     />
+          <Route
+          
+          path="/dashboard-refunds"
+          element={
+            <SellerProtectedRoute>
+              <ShopAllRefunds />
+            </SellerProtectedRoute>
+          }
+        />
 
-        {/* // <Route
-        //   path="/order/:id"
-        //   element={
-        //     <SellerProtectedRoute>
-        //       <ShopOrderDetails />
-        //     </SellerProtectedRoute>
-        //   }
-        // />
-        // <Route
-        //   path="/dashboard-products"
-        //   element={
-        //     <SellerProtectedRoute>
-        //       <ShopAllProducts />
-        //     </SellerProtectedRoute>
-        //   } */}
-        {/* // />
+        <Route
+        path="/order/:id"
+        element={
+        <SellerProtectedRoute>
+        <ShopOrderDetails />
+        </SellerProtectedRoute>
+        }
+        />
+        
+         <Route
+          path="/dashboard-products"
+        element={
+        <SellerProtectedRoute>
+        <ShopAllProducts />
+        </SellerProtectedRoute>
+        }
+        />
+
         // <Route
         //   path="/dashboard-create-event"
         //   element={
