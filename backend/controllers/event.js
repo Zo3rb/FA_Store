@@ -1,11 +1,13 @@
 const express = require("express");
 const catchAsyncErrors = require("../middleware/catchAsyncErrors");
-const Shop = require("../model/shop");
-const Event = require("../model/event");
+const Shop = require("../models/shop");
+const Event = require("../models/event");
 const ErrorHandler = require("../utils/ErrorHandler");
-const { isSeller, isAdmin, isAuthenticated } = require("../middleware/auth");
+const isSeller = require("../middleware/auth");
+const isAuthenticated = require("../middleware/auth");
+const isAdmin = require("../middleware/auth");
 const router = express.Router();
-const cloudinary = require("cloudinary");
+// const cloudinary = require("cloudinary");
 
 // create event
 router.post(
@@ -110,26 +112,6 @@ router.delete(
       });
     } catch (error) {
       return next(new ErrorHandler(error, 400));
-    }
-  })
-);
-
-// all events --- for admin
-router.get(
-  "/admin-all-events",
-  isAuthenticated,
-  isAdmin("Admin"),
-  catchAsyncErrors(async (req, res, next) => {
-    try {
-      const events = await Event.find().sort({
-        createdAt: -1,
-      });
-      res.status(201).json({
-        success: true,
-        events,
-      });
-    } catch (error) {
-      return next(new ErrorHandler(error.message, 500));
     }
   })
 );

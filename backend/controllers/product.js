@@ -1,11 +1,13 @@
 const express = require("express");
-const { isSeller, isAuthenticated, isAdmin } = require("../middleware/auth");
+const isSeller = require("../middleware/auth");
+const isAuthenticated = require("../middleware/auth");
+const isAdmin = require("../middleware/auth");
 const catchAsyncErrors = require("../middleware/catchAsyncErrors");
 const router = express.Router();
 const Product = require("../models/product");
-const Order = require("../models/order");
+// const Order = require("../model/order");
 const Shop = require("../models/shop");
-const cloudinary = require("cloudinary");
+// const cloudinary = require("cloudinary");
 const ErrorHandler = require("../utils/ErrorHandler");
 
 // create product
@@ -177,23 +179,5 @@ router.put(
   })
 );
 
-// all products --- for admin
-router.get(
-  "/admin-all-products",
-  isAuthenticated,
-  isAdmin("Admin"),
-  catchAsyncErrors(async (req, res, next) => {
-    try {
-      const products = await Product.find().sort({
-        createdAt: -1,
-      });
-      res.status(201).json({
-        success: true,
-        products,
-      });
-    } catch (error) {
-      return next(new ErrorHandler(error.message, 500));
-    }
-  })
-);
+
 module.exports = router;

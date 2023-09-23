@@ -29,10 +29,10 @@ import {
   ShopCreateEvents,
   ShopAllEvents,
   ShopAllCoupouns,
-  // ShopPreviewPage,
-  ShopAllOrders,
+  ShopPreviewPage,
+  // ShopAllOrders,
   // ShopOrderDetails,
-  ShopAllRefunds,
+  // ShopAllRefunds,
   // ShopSettingsPage,
   // ShopWithDrawMoneyPage,
   // ShopInboxPage,
@@ -53,12 +53,18 @@ import Store from "./redux/store";
 import { loadSeller, loadUser } from "./redux/actions/user";
 import { ShopHomePage } from "./ShopRoutes.js";
 import SellerProtectedRoute from "./routes/SellerProtectedRoute";
+import { getAllProducts } from "./redux/actions/product";
+import { getAllEvents } from "./redux/actions/event";
+import axios from "axios";
+import { server } from "./server";
 
 const App = () => {
 
   useEffect(() => {
     Store.dispatch(loadUser());
     Store.dispatch(loadSeller());
+    Store.dispatch(getAllProducts());
+    Store.dispatch(getAllEvents());
   }, []);
 
   return (
@@ -123,7 +129,7 @@ const App = () => {
             </ProtectedRoute>
           }
         /> */}
-        {/* <Route path="/shop/preview/:id" element={<ShopPreviewPage />} /> */}
+         <Route path="/shop/preview/:id" element={<ShopPreviewPage />} />
         {/* shop Routes */}
         <Route path="/shop-create" element={<ShopCreatePage />} />
         <Route path="/shop-login" element={<ShopLoginPage />} />
@@ -158,16 +164,18 @@ const App = () => {
               <SellerProtectedRoute>
                 <ShopCreateProduct /> 
               </SellerProtectedRoute>}
-        />
-      <Route 
+          />
+          
+      {/* <Route 
          path="/dashboard-orders" 
             element={ 
          <SellerProtectedRoute>
          <ShopAllOrders /> 
      </SellerProtectedRoute>
        }
-     />
-          <Route
+          /> */}
+          
+          {/* <Route
           
           path="/dashboard-refunds"
           element={
@@ -184,7 +192,7 @@ const App = () => {
         <ShopOrderDetails />
         </SellerProtectedRoute>
         }
-        />
+        /> */}
         
          <Route
           path="/dashboard-products"
