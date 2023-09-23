@@ -13,8 +13,8 @@ const ShopCreate = () => {
     const [name, setName] = useState("");
     const [phoneNumber, setPhoneNumber] = useState();
     const [address, setAddress] = useState("");
-    const [zipCode, setZipCode] = useState();
-    const [avatar, setAvatar] = useState();
+    const [zipCode, setZipCode] = useState("");
+    const [avatar, setAvatar] = useState("");
     const [password, setPassword] = useState("");
     const [visible, setVisible] = useState(false);
 
@@ -24,7 +24,7 @@ const ShopCreate = () => {
 
         const newForm = new FormData();
         
-        newForm.append("avatar", avatar);
+        newForm.append("file", avatar);
         newForm.append("name", name);
         newForm.append("email", email);
         newForm.append("password", password);
@@ -171,7 +171,7 @@ const ShopCreate = () => {
                 <div className="mt-1">
                     <input
                     type="number"
-                    name="zipcode"
+                    name="zipCode"
                     required
                     value={zipCode}
                     onChange={(e) => setZipCode(e.target.value)}
