@@ -30,7 +30,7 @@ export const createProduct =
         discountPrice,
         stock,
         shopId,
-        images
+        images,
       );
       dispatch({
         type: "productCreateSuccess",
