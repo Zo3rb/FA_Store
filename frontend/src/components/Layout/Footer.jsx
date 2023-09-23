@@ -11,13 +11,14 @@ import {
   footerProductLinks,
   footerSupportLinks,
 } from "../../static/data";
+import Fastore from "../../Assests/images/Fastore.svg";
 
 const Footer = () => {
   return (
     <div className="bg-gray-800 text-white">
-      <div className="md:flex md:justify-between md:items-center sm:px-12 px-4 bg-[#93B1A6] py-7">
+      <div className="md:flex md:justify-between md:items-center sm:px-12 px-4 bg-[#116466] py-7">
         <h1 className="lg:text-4xl text-3xl md:mb-0 mb-6 lg:leading-normal font-semibold md:w-2/5">
-          <span className="text-[#C70039]">Subscribe</span> us for get news{" "}
+          <span className="text-[#F070A1]">Subscribe</span> us for get news{" "}
           <br />
           events and offers
         </h1>
@@ -36,13 +37,13 @@ const Footer = () => {
       </div>
       <div className="grid grid-cols-1 sm:gird-cols-3 lg:grid-cols-4 gap-6 sm:px-8 px-5 py-16 sm:text-center">
         <ul className="px-5 text-center sm:text-start flex sm:block flex-col items-center">
-          <img
-            src="https://shopo.quomodothemes.website/assets/images/logo.svg"
+          <img className="w-40 h-auto -mt-6 -ml-4"
+            src={Fastore}
             alt=""
             style={{ filter: "brightness(0) invert(1)" }}
           />
           <br />
-          <p>The home and elements needeed to create beatiful products.</p>
+          <p className="-mt-9">The home and elements needeed to create beatiful products.</p>
           <div className="flex items-center mt-[15px]">
             <AiFillFacebook size={25} className="cursor-pointer" />
             <AiOutlineTwitter

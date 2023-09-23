@@ -16,6 +16,7 @@ import { useSelector } from "react-redux";
 import Cart from "../cart/Cart";
 import { backend_url } from "../../server";
 import Wishlist from "../Wishlist/Wishlist";
+import Fastore from "../../Assests/images/Fastore.svg";
 // import { RxCross1 } from "react-icons/rx";
 
 const Header = ({ activeHeading }) => {
@@ -57,8 +58,8 @@ const Header = ({ activeHeading }) => {
         <div className="hidden 800px:h-[50px] 800px:my-[20px] 800px:flex items-center justify-between">
           <div>
             <Link to="/">
-              <img
-                src="https://shopo.quomodothemes.website/assets/images/logo.svg"
+              <img className="w-40 h-auto -ml-5 mt-5 mb-5"
+                src= {Fastore}
                 alt=""
               />
             </Link>
@@ -113,7 +114,7 @@ const Header = ({ activeHeading }) => {
       <div
         className={`${
           active === true ? "shadow-sm fixed top-0 left-0 z-10" : null
-        } transition hidden 800px:flex items-center justify-between w-full bg-[#3321c8] h-[70px]`}
+        } transition hidden 800px:flex items-center justify-between w-full bg-[#116466] h-[70px]`}
       >
         <div
           className={`${styles.section} relative ${styles.noramlFlex} justify-between`}
