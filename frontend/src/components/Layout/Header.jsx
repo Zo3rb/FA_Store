@@ -32,7 +32,6 @@ const Header = ({ activeHeading }) => {
   const [openWishlist, setOpenWishlist] = useState(false);
   // const [open, setOpen] = useState(false);
 
-
   const handleSearchChange = (e) => {
     const term = e.target.value;
     setSearchTerm(term);
@@ -147,8 +146,9 @@ const Header = ({ activeHeading }) => {
 
           <div className="flex">
             <div className={`${styles.noramlFlex}`}>
-              <div className="relative cursor-pointer mr-[15px]"
-              onclick={() => setOpenWishlist(true)}
+              <div
+                className="relative cursor-pointer mr-[15px]"
+                onClick={() => setOpenWishlist(true)}
               >
                 <AiOutlineHeart
                   size={30}
@@ -156,15 +156,15 @@ const Header = ({ activeHeading }) => {
                   onClick={() => setOpenWishlist(true)}
                 />
                 <span className="absolute right-0 top-0 rounded-full bg-[#3bc177] w-4 h-4 top right p-0 m-0 text-white font-mono text-[12px] leading-tight text-center">
-                  {/* {wishlist && wishlist.length} */}
-                  0
+                  {/* {wishlist && wishlist.length} */}0
                 </span>
               </div>
             </div>
 
             <div className={`${styles.noramlFlex}`}>
-              <div className="relative cursor-pointer mr-[15px]"
-              onClick={() => setOpenCart(true)}
+              <div
+                className="relative cursor-pointer mr-[15px]"
+                onClick={() => setOpenCart(true)}
               >
                 <AiOutlineShoppingCart
                   size={30}
@@ -172,8 +172,7 @@ const Header = ({ activeHeading }) => {
                   // onClick={() => setOpenCart(true)}
                 />
                 <span className="absolute right-0 top-0 rounded-full bg-[#3bc177] w-4 h-4 top right p-0 m-0 text-white font-mono text-[12px] leading-tight text-center">
-                  {/* {cart && cart.length} */}
-                  1
+                  {/* {cart && cart.length} */}1
                 </span>
               </div>
             </div>
