@@ -7,7 +7,7 @@ const isSeller = require("../middleware/auth");
 const isAuthenticated = require("../middleware/auth");
 const isAdmin = require("../middleware/auth");
 const router = express.Router();
-// const cloudinary = require("cloudinary");
+const cloudinary = require("cloudinary");
 
 // create event
 router.post(
@@ -96,14 +96,14 @@ router.delete(
 
       if (!product) {
         return next(new ErrorHandler("Product is not found with this id", 404));
-      }    
+      }
 
       for (let i = 0; 1 < product.images.length; i++) {
         const result = await cloudinary.v2.uploader.destroy(
           event.images[i].public_id
         );
       }
-    
+
       await event.remove();
 
       res.status(201).json({
