@@ -1,8 +1,11 @@
 {
   "scripts": {
-    "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "server": "npm dev --prefix backend",
-    "client": "npm start --prefix frontend"
+    "start": "concurrently \"npm run server\" \"npm run client\"",
+    "server": "npm start --prefix backend",
+    "client": "npm start --prefix frontend",
+    "install:socket": "npm install --prefix socket",
+    "install:server": "npm install --prefix backend",
+    "install:client": "npm install --force --prefix frontend"
   },
   "dependencies": {
     "concurrently": "^8.2.1"
