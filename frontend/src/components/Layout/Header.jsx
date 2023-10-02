@@ -17,21 +17,21 @@ import Cart from "../cart/Cart";
 import { backend_url } from "../../server";
 import Wishlist from "../Wishlist/Wishlist";
 import Fastore from "../../Assests/images/Fastore.svg";
-// import { RxCross1 } from "react-icons/rx";
+import { RxCross1 } from "react-icons/rx";
 
 const Header = ({ activeHeading }) => {
   const { isAuthenticated, user } = useSelector((state) => state.user);
-  // const { isSeller } = useSelector((state) => state.seller);
-  // const { wishlist } = useSelector((state) => state.wishlist);
-  // const { cart } = useSelector((state) => state.cart);
-  // const { allProducts } = useSelector((state) => state.products);
+  const { isSeller } = useSelector((state) => state.seller);
+  const { wishlist } = useSelector((state) => state.wishlist);
+  const { cart } = useSelector((state) => state.cart);
+  const { allProducts } = useSelector((state) => state.products);
   const [searchTerm, setSearchTerm] = useState("");
   const [searchData, setSearchData] = useState(null);
   const [active, setActive] = useState(false);
   const [dropDown, setDropDown] = useState(false);
   const [openCart, setOpenCart] = useState(false);
   const [openWishlist, setOpenWishlist] = useState(false);
-  // const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(false);
 
   const handleSearchChange = (e) => {
     const term = e.target.value;
@@ -103,8 +103,8 @@ const Header = ({ activeHeading }) => {
           <div className={`${styles.button}`}>
             <Link to="/shop-create">
               <h1 className="text-[#fff] flex items-center">
-                {/* {isSeller ? "Go Dashboard" : "Become Seller"}{" "} */}
-                Become Seller <IoIosArrowForward className="ml-1" />
+                {isSeller ? "Go Dashboard" : "Become Seller"}{" "}
+                <IoIosArrowForward className="ml-1" />
               </h1>
             </Link>
           </div>
@@ -157,7 +157,7 @@ const Header = ({ activeHeading }) => {
                   onClick={() => setOpenWishlist(true)}
                 />
                 <span className="absolute right-0 top-0 rounded-full bg-[#3bc177] w-4 h-4 top right p-0 m-0 text-white font-mono text-[12px] leading-tight text-center">
-                  {/* {wishlist && wishlist.length} */}0
+                  {wishlist && wishlist.length}
                 </span>
               </div>
             </div>
@@ -170,10 +170,10 @@ const Header = ({ activeHeading }) => {
                 <AiOutlineShoppingCart
                   size={30}
                   color="rgb(255 255 255 / 83%)"
-                  // onClick={() => setOpenCart(true)}
+                  onClick={() => setOpenCart(true)}
                 />
                 <span className="absolute right-0 top-0 rounded-full bg-[#3bc177] w-4 h-4 top right p-0 m-0 text-white font-mono text-[12px] leading-tight text-center">
-                  {/* {cart && cart.length} */}1
+                  {cart && cart.length}
                 </span>
               </div>
             </div>
@@ -208,11 +208,11 @@ const Header = ({ activeHeading }) => {
       </div>
 
       {/* mobile header */}
-      {/* <div
+      <div
         className={`${
           active === true ? "shadow-sm fixed top-0 left-0 z-10" : null
         }
-      w-full h-[60px] bg-[#fff] z-50 top-0 left-0 shadow-sm 800px:hidden`}
+      w-full h-[110px] bg-[#fff] z-50 top-0 left-0 shadow-sm 800px:hidden`}
       >
         <div className="w-full flex items-center justify-between">
           <div>
@@ -224,10 +224,9 @@ const Header = ({ activeHeading }) => {
           </div>
           <div>
             <Link to="/">
-              <img
-                src="https://shopo.quomodothemes.website/assets/images/logo.svg"
+              <img className="w-40 -ml-5 cursor-pointer"
+                src= {Fastore}
                 alt=""
-                className="mt-3 cursor-pointer"
               />
             </Link>
           </div>
@@ -242,14 +241,14 @@ const Header = ({ activeHeading }) => {
               </span>
             </div>
           </div>
-          cart popup
+          {/* cart popup */}
           {openCart ? <Cart setOpenCart={setOpenCart} /> : null}
 
-          wishlist popup
+          {/* wishlist popup */}
           {openWishlist ? <Wishlist setOpenWishlist={setOpenWishlist} /> : null}
         </div>
 
-        header sidebar
+        {/* header sidebar */}
         {open && (
           <div
             className={`fixed w-full bg-[#0000005f] z-20 h-full top-0 left-0`}
@@ -285,11 +284,11 @@ const Header = ({ activeHeading }) => {
                 {searchData && (
                   <div className="absolute bg-[#fff] z-10 shadow w-full left-0 p-3">
                     {searchData.map((i) => {
-                      const d = i.name;
+                      // const d = i.name;
 
-                      const Product_name = d.replace(/\s+/g, "-");
+                      // const Product_name = d.replace(/\s+/g, "-");
                       return (
-                        <Link to={`/product/${Product_name}`}>
+                        <Link to={`/product/${i._id}`}>
                           <div className="flex items-center">
                             <img
                               src={i.image_Url[0]?.url}
@@ -348,7 +347,7 @@ const Header = ({ activeHeading }) => {
             </div>
           </div>
         )}
-      </div> */}
+      </div>
     </>
   );
 };
