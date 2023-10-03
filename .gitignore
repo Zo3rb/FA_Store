@@ -3,6 +3,8 @@
 backend/config/.env
 frontend/node_modules
 backend/node_modules
+frontend/package.json
+backend/package.json
 socket/node_modules
 backend/package-lock.json
 frontend/package-lock.json
