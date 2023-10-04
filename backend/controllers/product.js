@@ -7,7 +7,7 @@ const router = express.Router();
 const Product = require("../models/product");
 const Order = require("../models/order");
 const Shop = require("../models/shop");
-// const cloudinary = require("cloudinary");
+const cloudinary = require("cloudinary");
 const ErrorHandler = require("../utils/ErrorHandler");
 
 // create product
