@@ -15,10 +15,13 @@ const Events = () => {
           </div>
 
           <div className="w-full grid">
-            {allEvents.length !== 0 && (
-              <EventCard data={allEvents && allEvents[0]} />
+            {allEvents.length !== 0 ? (
+              allEvents.map((eachEvent) => (
+                <EventCard key={eachEvent.id} data={eachEvent} />
+              ))
+            ) : (
+              <h4>No Events available!</h4>
             )}
-            <h4>{allEvents?.length === 0 && "No Events have!"}</h4>
           </div>
         </div>
       )}

@@ -18,6 +18,7 @@ import { backend_url } from "../../server";
 import Wishlist from "../Wishlist/Wishlist";
 import Fastore from "../../Assests/images/Fastore.svg";
 import { RxCross1 } from "react-icons/rx";
+import AllProducts from "../Shop/AllProducts";
 
 const Header = ({ activeHeading }) => {
   const { isAuthenticated, user } = useSelector((state) => state.user);
@@ -34,10 +35,11 @@ const Header = ({ activeHeading }) => {
   const [open, setOpen] = useState(false);
 
   const handleSearchChange = (e) => {
+    console.log(allProducts);
     const term = e.target.value;
     setSearchTerm(term);
 
-    const filteredProducts = productData.filter((product) =>
+    const filteredProducts = allProducts.filter((product) =>
       product.name.toLowerCase().includes(term.toLowerCase())
     );
     setSearchData(filteredProducts);
@@ -88,7 +90,7 @@ const Header = ({ activeHeading }) => {
                       <Link to={`/product/${Product_name}`}>
                         <div className="w-full flex items-start-py-3">
                           <img
-                            src={i.image_Url[0].url}
+                            src={i.images.url}
                             alt=""
                             className="w-[40px] h-[40px] mr-[10px]"
                           />
@@ -281,14 +283,14 @@ const Header = ({ activeHeading }) => {
                 {searchData && (
                   <div className="absolute bg-[#fff] z-10 shadow w-full left-0 p-3">
                     {searchData.map((i) => {
-                      // const d = i.name;
+                      const d = i.name;
 
-                      // const Product_name = d.replace(/\s+/g, "-");
+                      const Product_name = d.replace(/\s+/g, "-");
                       return (
                         <Link to={`/product/${i._id}`}>
                           <div className="flex items-center">
                             <img
-                              src={i.image_Url[0]?.url}
+                              src={i.images.url}
                               alt=""
                               className="w-[50px] mr-2"
                             />

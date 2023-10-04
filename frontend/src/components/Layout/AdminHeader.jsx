@@ -5,6 +5,8 @@
  import { MdOutlineLocalOffer } from "react-icons/md";
  import { useSelector } from "react-redux";
  import { Link } from "react-router-dom";
+import Fastore from "../../Assests/images/Fastore.svg";
+
 
  const AdminHeader = () => {
    const { user } = useSelector((state) => state.user);
@@ -13,10 +15,7 @@
      <div className="w-full h-[80px] bg-white shadow sticky top-0 left-0 z-30 flex items-center justify-between px-4">
        <div>
          <Link to="/">
-           <img
-             src="https://shopo.quomodothemes.website/assets/images/logo.svg"
-             alt=""
-           />
+           <img className="w-40 h-auto -ml-2 mt-5 mb-5 pt-2 pb-2" src={Fastore} alt="" />
          </Link>
        </div>
        <div className="flex items-center">
