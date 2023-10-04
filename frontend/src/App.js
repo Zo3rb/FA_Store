@@ -37,21 +37,21 @@ import {
   ShopWithDrawMoneyPage,
   ShopInboxPage,
 } from "./routes/ShopRoutes";
-// import {
-//   AdminDashboardPage,
-//   AdminDashboardUsers,
-//   AdminDashboardSellers,
-//   AdminDashboardOrders,
-//   AdminDashboardProducts,
-//   AdminDashboardEvents,
-//   AdminDashboardWithdraw
-// } from "./routes/AdminRoutes";
+import {
+  AdminDashboardPage,
+  AdminDashboardUsers,
+  AdminDashboardSellers,
+  AdminDashboardOrders,
+  AdminDashboardProducts,
+  AdminDashboardEvents,
+  AdminDashboardWithdraw
+} from "./routes/AdminRoutes";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Store from "./redux/store";
 import { loadSeller, loadUser } from "./redux/actions/user";
 import ProtectedRoute from "./routes/ProtectedRoute";
-// import ProtectedAdminRoute from "./routes/ProtectedAdminRoute";
+import ProtectedAdminRoute from "./routes/ProtectedAdminRoute";
 import { ShopHomePage } from "./ShopRoutes.js";
 import SellerProtectedRoute from "./routes/SellerProtectedRoute";
 import { getAllProducts } from "./redux/actions/product";
@@ -261,8 +261,8 @@ const App = () => {
             </SellerProtectedRoute>
           }
         />
-        {/* Admin Routes */}
-        {/* <Route
+        Admin Routes
+        <Route
           path="/admin/dashboard"
           element={
             <ProtectedAdminRoute>
@@ -317,7 +317,7 @@ const App = () => {
               <AdminDashboardWithdraw />
             </ProtectedAdminRoute>
           }
-        /> */}
+        /> 
       </Routes>
       <ToastContainer
         position="bottom-center"

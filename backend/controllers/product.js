@@ -1,14 +1,20 @@
 const express = require("express");
-const isSeller = require("../middleware/auth");
-const isAuthenticated = require("../middleware/auth");
-const isAdmin = require("../middleware/auth");
+const {isSeller} = require("../middleware/auth");
+const {isAuthenticated} = require("../middleware/auth");
+const {isAdmin} = require("../middleware/auth");
 const catchAsyncErrors = require("../middleware/catchAsyncErrors");
 const router = express.Router();
 const Product = require("../models/product");
 const Order = require("../models/order");
 const Shop = require("../models/shop");
-// const cloudinary = require("cloudinary");
+const cloudinary = require("cloudinary");
 const ErrorHandler = require("../utils/ErrorHandler");
+
+cloudinary.v2.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+});
 
 // create product
 router.post(

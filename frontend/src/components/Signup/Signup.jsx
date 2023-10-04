@@ -3,11 +3,11 @@ import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import styles from "../../styles/styles";
 import { Link } from "react-router-dom";
 import { RxAvatar } from "react-icons/rx";
-import { server } from "../../server";
 import axios from "axios";
+import { server } from "../../server";
 import { toast } from "react-toastify";
 
-const Signup = () => {
+const Singup = () => {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
@@ -15,50 +15,32 @@ const Signup = () => {
   const [avatar, setAvatar] = useState(null);
 
   const handleFileInputChange = (e) => {
-    // const reader = new FileReader();
+    const reader = new FileReader();
 
-    // reader.onload = () => {
-    //   if (reader.readyState === 2) {
-    //     setAvatar(reader.result);
-    //   }
-    // };
+    reader.onload = () => {
+      if (reader.readyState === 2) {
+        setAvatar(reader.result);
+      }
+    };
 
-    // reader.readAsDataURL(e.target.files[0]);
-    const file = e.target.files[0];
-    setAvatar(file);
+    reader.readAsDataURL(e.target.files[0]);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const newForm = new FormData();
-
-    newForm.append("name", name);
-    newForm.append("email", email);
-    newForm.append("file", avatar);
-    newForm.append("password", password);
-
-    const config = {
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
-    };
-
-    try {
-      const response = await axios.post(
-        `${server}/user/create-user`,
-        newForm,
-        config
-      );
-      console.log(response);
-      toast.success(response.data.message);
-      setName("");
-      setEmail("");
-      setPassword("");
-    } catch (err) {
-      console.error("Error:", err);
-      toast.error(err.response.data.message);
-    }
+    axios
+      .post(`${server}/user/create-user`, { name, email, password, avatar })
+      .then((res) => {
+        toast.success(res.data.message);
+        setName("");
+        setEmail("");
+        setPassword("");
+        setAvatar();
+      })
+      .catch((error) => {
+        toast.error(error.response.data.message);
+      });
   };
 
   return (
@@ -199,4 +181,4 @@ const Signup = () => {
   );
 };
 
-export default Signup;
+export default Singup;

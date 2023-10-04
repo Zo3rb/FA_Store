@@ -18,6 +18,7 @@ import { backend_url } from "../../server";
 import Wishlist from "../Wishlist/Wishlist";
 import Fastore from "../../Assests/images/Fastore.svg";
 import { RxCross1 } from "react-icons/rx";
+import AllProducts from "../Shop/AllProducts";
 
 const Header = ({ activeHeading }) => {
   const { isAuthenticated, user } = useSelector((state) => state.user);
@@ -34,10 +35,11 @@ const Header = ({ activeHeading }) => {
   const [open, setOpen] = useState(false);
 
   const handleSearchChange = (e) => {
+    console.log(allProducts);
     const term = e.target.value;
     setSearchTerm(term);
 
-    const filteredProducts = productData.filter((product) =>
+    const filteredProducts = allProducts.filter((product) =>
       product.name.toLowerCase().includes(term.toLowerCase())
     );
     setSearchData(filteredProducts);
@@ -57,8 +59,9 @@ const Header = ({ activeHeading }) => {
         <div className="hidden 800px:h-[50px] 800px:my-[20px] 800px:flex items-center justify-between">
           <div>
             <Link to="/">
-              <img className="w-40 h-auto -ml-5 mt-5 mb-5"
-                src= {Fastore}
+              <img
+                className="w-40 h-auto -ml-5 mt-5 mb-5"
+                src={Fastore}
                 alt=""
               />
             </Link>
@@ -87,7 +90,7 @@ const Header = ({ activeHeading }) => {
                       <Link to={`/product/${Product_name}`}>
                         <div className="w-full flex items-start-py-3">
                           <img
-                            src={i.image_Url[0].url}
+                            src={i.images.url}
                             alt=""
                             className="w-[40px] h-[40px] mr-[10px]"
                           />
@@ -183,8 +186,7 @@ const Header = ({ activeHeading }) => {
                 {isAuthenticated ? (
                   <Link to="/profile">
                     <img
-                      // src={`${user?.avatar?.url}`}
-                      src={`${backend_url}${user.avatar}`}
+                      src={`${user?.avatar?.url}`}
                       className="w-[35px] h-[35px] rounded-full"
                       alt=""
                     />
@@ -224,10 +226,7 @@ const Header = ({ activeHeading }) => {
           </div>
           <div>
             <Link to="/">
-              <img className="w-40 -ml-5 cursor-pointer"
-                src= {Fastore}
-                alt=""
-              />
+              <img className="w-40 -ml-5 cursor-pointer" src={Fastore} alt="" />
             </Link>
           </div>
           <div>
@@ -284,14 +283,14 @@ const Header = ({ activeHeading }) => {
                 {searchData && (
                   <div className="absolute bg-[#fff] z-10 shadow w-full left-0 p-3">
                     {searchData.map((i) => {
-                      // const d = i.name;
+                      const d = i.name;
 
-                      // const Product_name = d.replace(/\s+/g, "-");
+                      const Product_name = d.replace(/\s+/g, "-");
                       return (
                         <Link to={`/product/${i._id}`}>
                           <div className="flex items-center">
                             <img
-                              src={i.image_Url[0]?.url}
+                              src={i.images.url}
                               alt=""
                               className="w-[50px] mr-2"
                             />
@@ -321,7 +320,7 @@ const Header = ({ activeHeading }) => {
                   <div>
                     <Link to="/profile">
                       <img
-                        src={`${user.avatar?.url}`}
+                        src={`${user?.avatar?.url}`}
                         alt=""
                         className="w-[60px] h-[60px] rounded-full border-[3px] border-[#0eae88]"
                       />

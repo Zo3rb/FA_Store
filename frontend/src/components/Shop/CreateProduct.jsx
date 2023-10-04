@@ -17,9 +17,9 @@ const CreateProduct = () => {
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("");
   const [tags, setTags] = useState("");
-  const [originalPrice, setOriginalPrice] = useState("");
-  const [discountPrice, setDiscountPrice] = useState("");
-  const [stock, setStock] = useState("");
+  const [originalPrice, setOriginalPrice] = useState(null);
+  const [discountPrice, setDiscountPrice] = useState(null);
+  const [stock, setStock] = useState(null);
 
   useEffect(() => {
     if (error) {

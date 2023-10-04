@@ -12,7 +12,7 @@ const DashboardHeader = () => {
   return (
     <div className="w-full h-[80px] bg-white shadow sticky top-0 left-0 z-30 flex items-center justify-between px-4">
       <div>
-        <Link to="/dashboard">
+        <Link to="/">
           <img className="w-40 h-auto mt-5 mb-5 -ml-5"
             src={Fastore}
             alt=""

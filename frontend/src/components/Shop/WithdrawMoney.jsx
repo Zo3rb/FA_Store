@@ -107,7 +107,7 @@ const WithdrawMoney = () => {
         <h5 className="text-[20px] pb-4">
           Available Balance: ${availableBalance}
         </h5>
-        <div
+         <div
           className={`${styles.button} text-white !h-[42px] !rounded`}
           onClick={() => (availableBalance < 50 ? error() : setOpen(true))}
         >

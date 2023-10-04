@@ -44,4 +44,4 @@ const isAdmin = (...roles) => {
 
 
 
-module.exports = isAuthenticated, isSeller, isAdmin;
+module.exports = {isAuthenticated, isSeller, isAdmin};

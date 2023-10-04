@@ -7,7 +7,13 @@ const isSeller = require("../middleware/auth");
 const isAuthenticated = require("../middleware/auth");
 const isAdmin = require("../middleware/auth");
 const router = express.Router();
-// const cloudinary = require("cloudinary");
+const cloudinary = require("cloudinary");
+
+cloudinary.v2.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+});
 
 // create event
 router.post(
@@ -31,7 +37,7 @@ router.post(
 
         for (let i = 0; i < images.length; i++) {
           const result = await cloudinary.v2.uploader.upload(images[i], {
-            folder: "products",
+            folder: "events",
           });
 
           imagesLinks.push({
