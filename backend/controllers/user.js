@@ -7,8 +7,14 @@ const catchAsyncErrors = require("../middleware/catchAsyncErrors");
 const jwt = require("jsonwebtoken");
 const sendMail = require("../utils/sendMail");
 const sendToken = require("../utils/jwtToken");
-const isAuthenticated = require("../middleware/auth");
+const {isAuthenticated} = require("../middleware/auth");
 const { isAdmin } = require("../middleware/auth");
+
+cloudinary.v2.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+});
 
 // create user
 router.post("/create-user", async (req, res, next) => {
@@ -20,23 +26,17 @@ router.post("/create-user", async (req, res, next) => {
       return next(new ErrorHandler("User already exists", 400));
     }
 
-    const myCloud = await cloudinary.v2.uploader.upload(avatar, {
-      folder: "avatars",
-    });
 
     const user = {
       name: name,
       email: email,
       password: password,
-      avatar: {
-        public_id: myCloud.public_id,
-        url: myCloud.secure_url,
-      },
+      avatar: avatar
     };
 
     const activationToken = createActivationToken(user);
 
-    const activationUrl = `https://eshop-tutorial-pyri.vercel.app/activation/${activationToken}`;
+    const activationUrl = `http://localhost:3000/activation/${activationToken}`;
 
     try {
       await sendMail({
@@ -78,6 +78,7 @@ router.post(
       if (!newUser) {
         return next(new ErrorHandler("Invalid token", 400));
       }
+
       const { name, email, password, avatar } = newUser;
 
       let user = await User.findOne({ email });
@@ -85,10 +86,18 @@ router.post(
       if (user) {
         return next(new ErrorHandler("User already exists", 400));
       }
+
+      const myCloud = await cloudinary.v2.uploader.upload(avatar, {
+        folder: "avatars",
+      });
+
       user = await User.create({
         name,
         email,
-        avatar,
+        avatar: {
+          public_id: myCloud.public_id,
+          url: myCloud.secure_url,
+        },
         password,
       });
 
@@ -374,7 +383,7 @@ router.get(
       const users = await User.find().sort({
         createdAt: -1,
       });
-      res.status(201).json({
+      res.status(200).json({
         success: true,
         users,
       });

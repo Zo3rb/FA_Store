@@ -57,8 +57,9 @@ const Header = ({ activeHeading }) => {
         <div className="hidden 800px:h-[50px] 800px:my-[20px] 800px:flex items-center justify-between">
           <div>
             <Link to="/">
-              <img className="w-40 h-auto -ml-5 mt-5 mb-5"
-                src= {Fastore}
+              <img
+                className="w-40 h-auto -ml-5 mt-5 mb-5"
+                src={Fastore}
                 alt=""
               />
             </Link>
@@ -183,8 +184,7 @@ const Header = ({ activeHeading }) => {
                 {isAuthenticated ? (
                   <Link to="/profile">
                     <img
-                      // src={`${user?.avatar?.url}`}
-                      src={`${backend_url}${user.avatar}`}
+                      src={`${user?.avatar?.url}`}
                       className="w-[35px] h-[35px] rounded-full"
                       alt=""
                     />
@@ -224,10 +224,7 @@ const Header = ({ activeHeading }) => {
           </div>
           <div>
             <Link to="/">
-              <img className="w-40 -ml-5 cursor-pointer"
-                src= {Fastore}
-                alt=""
-              />
+              <img className="w-40 -ml-5 cursor-pointer" src={Fastore} alt="" />
             </Link>
           </div>
           <div>
@@ -321,7 +318,7 @@ const Header = ({ activeHeading }) => {
                   <div>
                     <Link to="/profile">
                       <img
-                        src={`${user.avatar?.url}`}
+                        src={`${user?.avatar?.url}`}
                         alt=""
                         className="w-[60px] h-[60px] rounded-full border-[3px] border-[#0eae88]"
                       />

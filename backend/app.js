@@ -11,11 +11,17 @@ app.use(
     credentials: true,
   })
 );
-app.use(express.json());
+
+app.use(express.json({ limit: "10mb" }));
+app.use(express.urlencoded({ extended: true, limit: "10mb" }));
 app.use(cookieParser());
-app.use("/", express.static("/uploads"));
+app.use("/test", (req, res) => {
+  res.send("Hello world!");
+});
+
 app.use(bodyParser.urlencoded({ extended: true, limit: "50mb" }));
 
+// config
 if (process.env.NODE_ENV !== "PRODUCTION") {
   require("dotenv").config({
     path: "config/.env",

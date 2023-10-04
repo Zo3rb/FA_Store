@@ -1,9 +1,9 @@
-const Conversation = require("../model/conversation");
+const Conversation = require("../models/conversation");
 const ErrorHandler = require("../utils/ErrorHandler");
 const catchAsyncErrors = require("../middleware/catchAsyncErrors");
 const express = require("express");
-const isSeller = require("../middleware/auth");
-const isAuthenticated  = require("../middleware/auth");
+const {isSeller} = require("../middleware/auth");
+const {isAuthenticated}  = require("../middleware/auth");
 const router = express.Router();
 
 // create a new conversation
