@@ -71,8 +71,11 @@ This project is licensed under the MIT License - see the [LICENSE](https://chat.
 
 We would like to thank the open-source community and all contributors for their support in building and improving the Fastore Multi-Vendor E-Commerce Web Application.
 
-## Contact
+## Authors
 
-If you have any questions or need further assistance, please contact us at [ali.f90@outlook.com](mailto:ali.f90@outlook.com).
+Nwadike Joseph [jcyoung.mjc44@gmaIL.com](mailto:jcyoung.mjc44@gmaIL.com) 
+Onyenuke chukwudi [onyenikechukwudi@gmaIL.com](mailto:onyenikechukwudi@gmaIL.com)
+Emmanuel iwatt [iwattemma218@gmail.com](mailto:iwattemma218@gmail.com)
+Ali Abu-elfottoh [ali.f90@outlook.com](mailto:ali.f90@outlook.com).
 
 Happy shopping and selling! 🛒💼
