@@ -19,7 +19,7 @@ const Hero = () => {
         >
           Welcome To FASTORE <br /> Home Of Quality Products
         </h1>
-        <p className="pt-5 text-[25px] font-[Poppins] font-[500] text-[#05386B]">
+        <p className="pt-5 text-[25px] font-[Poppins] font-[500] text-[#9D3978]">
           Step into the realm of excellence at FASTORE, where a curated selection of 
           top-tier products awaits. Our commitment to quality knows no bounds, making 
           us your ultimate destination for premium goods. Welcome to the Home of Quality 
