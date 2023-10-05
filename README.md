@@ -20,7 +20,7 @@ Before you begin, ensure you have the following prerequisites installed:
 1. Clone the repository to your local machine:
 
    ```shell
-   git clone <repository-url>
+   git clone https://github.com/Zo3rb/Fastore
    ```
 
 2. Navigate to the project directory:  
@@ -73,10 +73,6 @@ We would like to thank the open-source community and all contributors for their 
 
 ## Contact
 
-If you have any questions or need further assistance, please contact us at [your-email@example.com](mailto:your-email@example.com).
+If you have any questions or need further assistance, please contact us at [ali.f90@outlook.com](mailto:ali.f90@outlook.com).
 
 Happy shopping and selling! 🛒💼
-
-typescriptCopy code
-
-`` Please replace `<repository-url>` with the actual URL of your Git repository. Feel free to make any further adjustments or provide more details as needed. ``
