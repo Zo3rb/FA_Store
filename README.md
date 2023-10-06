@@ -4,6 +4,8 @@ Welcome to Fastore, a Multi-Vendor E-Commerce Web Application! This platform all
 
 !["ss"](./screenshot.png)
 
+[live Demo](https://fastore.onrender.com/)
+
 ## Getting Started
 
 Follow these instructions to set up and run the project on your local machine.
